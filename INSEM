@@ -1,0 +1,293 @@
+labs
+
+2. install and configure the jenkins on windows
+
+Installation
+Go to the official Jenkins website at https://www.jenkins.io/download/ and download the Windows installer.
+Run the installer and follow the prompts to complete the installation.
+Once the installation is complete, Jenkins will automatically start running as a Windows service.
+
+Configuration
+Open your web browser and go to http://localhost:8080/ to access the Jenkins web interface.
+You will be prompted to enter the initial admin password, which you can find in the initialAdminPassword file located in the Jenkins installation directory (by default, C:\Program Files (x86)\Jenkins\secrets\initialAdminPassword).
+Once you've entered the initial admin password, Jenkins will ask you to install some recommended plugins. Select the "Install suggested plugins" option and wait for the installation to complete.
+After the plugin installation is complete, you will be prompted to create an admin user account. Follow the prompts to create the account.
+Once you've created your admin account, you will be taken to the Jenkins dashboard.
+From here, you can configure Jenkins by adding plugins, creating and configuring jobs, and setting up build agents.
+Congratulations, you have successfully installed and configured Jenkins on Windows!
+
+-----------------------------------------------------------------------------------------------------------------------------------
+3. continous integration with jenkins
+
+Steps
+1. Create a Jenkins job
+Log in to your Jenkins instance
+Click "New Item" on the left sidebar and enter a name for your job
+Select "Freestyle project" and click "OK"
+2. Configure source code management
+Under "Source Code Management," select your VCS and enter the repository URL
+Choose the appropriate branch to build (e.g., master)
+If you're using Git, enter your Git credentials
+3. Configure the build environment
+Under "Build Environment," select "Delete workspace before build starts" to ensure a clean build
+If you need to set environment variables or run scripts before the build, add them here
+4. Configure the build
+Under "Build," add a build step to run your build script (e.g., npm install && npm run build)
+Add a post-build action to run your automated test suite (e.g., npm run test)
+If your build generates artifacts (e.g., a compiled binary), add a post-build action to archive them
+5. Save and run the job
+Click "Save" to save your job configuration
+Click "Build Now" to run the job
+Check the console output to ensure the build and test steps completed successfully
+6. Set up continuous integration
+Under "Build Triggers," select "Poll SCM" and enter a schedule (e.g., */5 * * * * to poll every 5 minutes)
+Add a webhook to your VCS to trigger the Jenkins job on each push to the repository
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Build Python Apps From The Azure Platform: A Practical
+
+Steps
+1. Create a web app in Azure
+Log in to the Azure portal (https://portal.azure.com)
+Click "Create a resource" on the left sidebar and search for "Web App"
+Enter a name for your app, select your subscription and resource group, and choose your OS and runtime stack (e.g., Python 3.9)
+Click "Review + create" and then "Create" to create the app
+
+2. Deploy your code
+In the app overview page, click "Deployment Center" on the left sidebar
+Select your source control (e.g., GitHub, Azure DevOps) and follow the prompts to connect your account
+Select your repository and branch, and configure your build settings (e.g., build command, runtime stack)
+Click "Save" and then "Continue" to start the deployment
+
+3. Configure environment variables
+In the app overview page, click "Configuration" on the left sidebar
+Under "Application settings," add any environment variables your app needs (e.g., database connection strings)
+Click "Save" to save your settings
+
+4. Set up a custom domain (optional)
+In the app overview page, click "Custom domains" on the left sidebar
+Follow the prompts to add your custom domain (e.g., example.com)
+Configure your DNS settings to point your domain to your Azure app's IP address
+
+5. Monitor your app
+In the app overview page, click "Monitoring" on the left sidebar
+Configure your logging and monitoring settings to track errors, performance, and other metrics
+Set up alerts to notify you of any issues with your app
+-----------------------------------------------------------------------------------------------------------------------------------
+5.Use CI/CD To Deploy A Java Web App To Azure App Service: A Practical
+
+Steps
+1. Create an Azure App Service
+Log in to the Azure portal (https://portal.azure.com)
+Click "Create a resource" on the left sidebar and search for "Web App"
+Enter a name for your app, select your subscription and resource group, and choose your OS and runtime stack (e.g., Java 11)
+Click "Review + create" and then "Create" to create the app
+
+2. Set up CI/CD with Azure Pipelines
+In the app overview page, click "Deployment Center" on the left sidebar
+Select "Azure Pipelines" and follow the prompts to create a new pipeline
+Configure your pipeline to build and deploy your Java web app codebase (e.g., build with Maven, deploy as a JAR file)
+Set up a service connection to authenticate with your Azure subscription
+
+3. Monitor your app
+In the app overview page, click "Monitoring" on the left sidebar
+Configure your logging and monitoring settings to track errors, performance, and other metrics
+Set up alerts to notify you of any issues with your app
+
+Congratulations, you've set up CI/CD to deploy a Java web app to Azure App Service! With Azure Pipelines' powerful features for building, testing, and deploying code, you can easily manage and scale your app as your needs grow.
+
+
+
+*************************skills****************************************
+
+
+2. deploying files to github using ubuntu
+
+Steps
+1. Create a local Git repository
+Open a terminal and navigate to the directory where you want to create the repository
+Run the command git init to initialize a new Git repository
+Add the files you want to deploy to the repository by running git add . (the . means all files in the current directory)
+2. Connect to your GitHub account
+Generate an SSH key by running the command ssh-keygen -t ed25519 -C "your_email@example.com" (replace "your_email@example.com" with your actual email address)
+Follow the prompts to save the key to the default location
+Open the public key file (~/.ssh/id_ed25519.pub) in a text editor and copy the contents to your clipboard
+Log in to your GitHub account and navigate to the "Settings" page
+Click on "SSH and GPG keys" and then "New SSH key"
+Give the key a name and paste the contents of the public key file into the "Key" field
+Click "Add SSH key" to save the key to your account
+3. Configure Git to use SSH
+Open the Git configuration file by running the command git config --global -e
+Add the following lines to the file, replacing "your_username" with your GitHub username:
+typescript
+Copy code
+[user]
+    name = your_username
+    email = your_email@example.com
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+Save and close the file
+4. Connect to your GitHub repository
+Copy the SSH URL of your GitHub repository
+In the terminal, run the command git remote add origin ssh://git@github.com/your_username/your_repository.git (replace "your_username" and "your_repository" with your actual GitHub username and repository name)
+Verify that the remote repository was added successfully by running the command git remote -v
+5. Push changes to GitHub
+Commit your changes by running the command git commit -m "Commit message" (replace "Commit message" with a brief description of your changes)
+Push the changes to the remote repository by running the command git push origin main (replace "main" with the name of your branch)
+Congratulations, you have successfully deployed files to GitHub via Git in Ubuntu! You can now manage your codebase on GitHub and collaborate with other users.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+3. deploying files to bitbucket using ubuntu
+
+1. Create a local Git repository
+Open a terminal and navigate to the directory where you want to create the repository
+Run the command git init to initialize a new Git repository
+Add the files you want to deploy to the repository by running git add . (the . means all files in the current directory)
+2. Connect to your Bitbucket account
+Log in to your Bitbucket account and navigate to the "Settings" page
+Click on "Access keys" and then "Add key"
+Give the key a label and click "Add key"
+Copy the contents of the public key to your clipboard
+3. Configure Git to use SSH
+Open the Git configuration file by running the command git config --global -e
+Add the following lines to the file, replacing "your_username" with your Bitbucket username and "public_key" with the contents of the public key:
+ruby
+Copy code
+[user]
+    name = your_username
+    email = your_email@example.com
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+[credential]
+    helper = store
+[remote "origin"]
+    url = git@bitbucket.org:your_username/your_repository.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+    remote = origin
+    merge = refs/heads/main
+Save and close the file
+4. Connect to your Bitbucket repository
+Copy the SSH URL of your Bitbucket repository
+In the terminal, run the command git remote add origin git@bitbucket.org:your_username/your_repository.git (replace "your_username" and "your_repository" with your actual Bitbucket username and repository name)
+Verify that the remote repository was added successfully by running the command git remote -v
+5. Push changes to Bitbucket
+Commit your changes by running the command git commit -m "Commit message" (replace "Commit message" with a brief description of your changes)
+Push the changes to the remote repository by running the command git push origin main (replace "main" with the name of your branch)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Continuous Integration with Jenkins, Git, and Maven in Ubuntu
+
+Steps
+1. Configure Git
+Create a new repository on your Git platform of choice (e.g. GitHub, Bitbucket)
+Clone the repository to your Ubuntu system by running the command git clone <repository-url>
+Change directory to the cloned repository by running the command cd <repository-name>
+2. Configure Jenkins
+Open Jenkins in your browser by navigating to http://localhost:8080
+Install the necessary plugins:
+Git plugin
+Maven Integration plugin
+Pipeline plugin
+Create a new Jenkins job:
+Click on "New Item" in the Jenkins dashboard
+Enter a name for the job and select "Pipeline"
+Click "OK"
+Configure the job:
+Under "Pipeline", select "Pipeline script from SCM"
+Select "Git" as the SCM and enter the repository URL
+Under "Script Path", enter the path to the Jenkinsfile in the repository (e.g. Jenkinsfile)
+3. Create a Jenkinsfile
+In your Git repository, create a new file called Jenkinsfile
+Enter the following code to define the pipeline:
+lua
+Copy code
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: '<repository-url>']]])
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
+Replace <repository-url> with the URL of your Git repository
+4. Test the pipeline
+Click "Build Now" in the Jenkins job dashboard
+Jenkins will check out the repository, build the Maven project, and report the results in the job console output
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+5. TDD with JUnit 5 in Ubuntu
+
+Steps
+1. Create a Maven project
+Open a terminal and navigate to the directory where you want to create the project
+Run the command mvn archetype:generate -DgroupId=com.example -DartifactId=my-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false to create a new Maven project
+Change directory to the project directory by running the command cd my-project
+2. Add JUnit 5 dependencies to the project
+Open the pom.xml file in a text editor
+Add the following dependencies under the <dependencies> element:
+php
+Copy code
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.8.1</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.8.1</version>
+    <scope>test</scope>
+</dependency>
+Save the file
+3. Write a test
+Create a new Java class called MyClassTest in the src/test/java/com/example directory
+Add the following code to the class:
+typescript
+Copy code
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MyClassTest {
+    @Test
+    void myTest() {
+        assertTrue(true);
+    }
+}
+4. Run the test
+Open a terminal and navigate to the project directory
+Run the command mvn test to build and run the tests
+JUnit 5 will run the test and report the results in the terminal output
+5. Implement the feature
+Create a new Java class called MyClass in the src/main/java/com/example directory
+Implement the feature you want to test in the class
+Modify the test to test the feature:
+java
+Copy code
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MyClassTest {
+    @Test
+    void myTest() {
+        MyClass myClass = new MyClass();
+        assertTrue(myClass.myMethod());
+    }
+}
+6. Repeat steps 4-5 until complete
+Write a failing test for the next feature you want to implement
+Implement the feature
+Modify the test to test the feature
+Run the tests to verify that the feature works correctly
+
+
+
+
